@@ -1,17 +1,23 @@
 public class Main {
 
-    public static void checkMonth(int month){
-        boolean leapYear = (month % 4 == 0 && month % 100 != 0) || (month % 400 == 0);
+    public static void checkYear(int Year){
+        boolean leapYear = (Year % 4 == 0 && Year % 100 != 0) || (Year % 400 == 0);
         if (leapYear) {
-            System.out.println(month + " Высокосный");
+            System.out.println(Year + " Высокосный");
         } else {
-            System.out.println(month + " Невысокосный");
+            System.out.println(Year + " Невысокосный");
         }
     }
 
-    public static void checkYear(int clientDeviceYear, int clientSystem) {
+    public static void checkOs(int clientDeviceYear, int clientSystem) {
 
-        String yearManufacture = clientSystem == 1 ? clientDeviceYear >= 2015 ? "Установите обычную версию приложения для Android по ссылке" : "Установите облегченную версию приложения для Android по ссылке" : clientDeviceYear >= 2015 ? "Установите обычную версию приложения для IOS по ссылке" : "Установите облегченную версию приложения для IOS по ссылке";
+        String yearManufacture;
+        if (clientSystem == 1) {
+            yearManufacture = clientDeviceYear >= 2015 ? "Установите обычную версию приложения для Android по ссылке" : "Установите облегченную версию приложения для Android по ссылке";
+        } else {
+            if (clientDeviceYear >= 2015) yearManufacture = "Установите обычную версию приложения для IOS по ссылке";
+            else yearManufacture = "Установите облегченную версию приложения для IOS по ссылке";
+        }
         System.out.println(yearManufacture);
     }
 
@@ -34,8 +40,8 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello, World!");
-        checkMonth(2230);
-        checkYear(2013, 1);
+        checkYear(2230);
+        checkOs(2013, 1);
         System.out.println(distanceDelivery(50));
 
     }
